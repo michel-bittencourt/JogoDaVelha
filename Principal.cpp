@@ -15,9 +15,11 @@ struct Jogo {
 	void JogoPrincipal();
 	void Jogador1();
 	void Jogador2();
+	void RetornaVencedor();
 };
 
-int posicao[8]{ 0 };
+int posicao[9]{ 0 };
+int Escolha1, Escolha2{ 0 };
 
 int main() {
 	Telas Telas;
@@ -114,38 +116,76 @@ void Jogo::JogoPrincipal()
 	Telas Telas;
 	Jogo Jogo;
 
-	int Escolha1, Escolha2{ 0 };
 
 	for (int i = 0; i < 9; i++) {
 		Telas.RetornaJogo();
-		//jogador 1
 		Jogo.Jogador1();
-		//jogador 2
-		
-
+		Jogo.RetornaVencedor();
+		Telas.RetornaJogo();
+		Jogo.Jogador2();
+		Jogo.RetornaVencedor();
 	}
 }
 
 void Jogo::Jogador1()
 {
-	bool saida = true;
-	while (saida)
-	{
-		std::cout << "Jogador 1: ";
+	Jogo Jogo;
+		Jogador1:
+		std::cout << "Jogador 1:";
 		std::cin >> Escolha1;
-		if (Escolha1 == -1 && Escolha1 == 1) { saida= false; }
-		else
-		{
-			posicao[Escolha1 - 1] = 1;
+		if (posicao[Escolha1-1] != 0) {
+			std::cout << "Posição já preenchida, escolha novamente!\n";
+			goto Jogador1;
 		}
-	}
+		else {
+			posicao[Escolha1-1] = 1;
+		}
+
+		
+
+	/*bool saida2 = true;
+	while (saida2)
+	{
+		bool saida = true;
+		while (saida)
+		{
+			std::cout << "Jogador 1: ";
+			std::cin >> Escolha1;
+			if (posicao[Escolha1 - 1] == -1 && posicao[Escolha1 - 1] == 1) {
+				std::cout <<
+					"Posição já escolhida";  saida = false;
+			}
+			else
+			{
+				posicao[Escolha1 - 1] = 1;
+				saida2 = false;
+			}
+		}
+	}*/
 }
 
 void Jogo::Jogador2()
 {
-		Telas.RetornaJogo();
-		std::cout << "Jogador 2: ";
-		std::cin >> Escolha2;
+	Jogo Jogo;
+	Jogador2:
+	std::cout << "Jogador 2:";
+	std::cin >> Escolha2;
+	if (posicao[Escolha2-1] != 0) {
+		std::cout << "Posição já preenchida, escolha novamente!\n";
+		goto Jogador2;
+	}
+	else {
 		posicao[Escolha2-1] = -1;
+	}
+}
+
+void Jogo::RetornaVencedor()
+{
+	if(posicao[0,1,2] == 1 || posicao[3,4,5] == 1 || posicao[6,7,8] == 1 || posicao[0,4,8] == 1 || 
+		posicao[2,4,6] == 1 || posicao[0,3,6] == 1 || posicao[1,4,7] == 1 || posicao[2,5,8] == 1)
+		std::cout << "JOGADOR 1 GANHOU\n";
+	else if(posicao[0, 1, 2] == -1 || posicao[3, 4, 5] == -1 || posicao[6, 7, 8] == -1 || posicao[0, 4, 8] == -1 ||
+		posicao[2, 4, 6] == -1 || posicao[0, 3, 6] == -1 || posicao[1, 4, 7] == -1 || posicao[2, 5, 8] == -1)
+		std::cout << "JOGADOR 2 GANHOU\n";
 }
 
