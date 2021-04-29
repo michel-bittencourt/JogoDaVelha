@@ -19,6 +19,7 @@ struct Jogo {
 	void RetornaVencedor();
 	void Continuar();
 	void Placar();
+	void Delay();
 };
 int posicao[9]{ 0 };
 int Escolha1, Escolha2{ 0 };
@@ -113,9 +114,7 @@ void Jogo::Escolha()
 				break;
 			default:
 				std::cout << "Escolha inválida! \n";
-				using namespace std::chrono_literals;
-				std::this_thread::sleep_for(1.3s);
-
+				Jogo.Delay();
 				system("CLS");
 				break;
 			}
@@ -220,4 +219,10 @@ void Jogo::Continuar()
 
 void Jogo::Placar()
 {
+}
+
+void Jogo::Delay()
+{
+	using namespace std::chrono_literals;
+	std::this_thread::sleep_for(1.3s);
 }
