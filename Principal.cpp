@@ -2,6 +2,8 @@
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <chrono>
+#include <thread>
 //Prototipos
 struct Telas {
 	void TelaBoasVindas();
@@ -16,6 +18,7 @@ struct Jogo {
 	void Jogador2();
 	void RetornaVencedor();
 	void Continuar();
+	void Placar();
 };
 int posicao[9]{ 0 };
 int Escolha1, Escolha2{ 0 };
@@ -79,7 +82,7 @@ void Jogo::Escolha()
 {
 	while (true)
 	{
-		int Escolha;
+		char Escolha;
 		char sair;
 		Jogo Jogo;
 		Telas Telas;
@@ -90,10 +93,10 @@ void Jogo::Escolha()
 		if (entrada) {
 			switch (Escolha)
 			{
-			case 1:
+			case '1':
 				Jogo.JogoPrincipal();
 				break;
-			case 2:
+			case '2':
 				Telas.Instrucoes();
 				std::cout << "Clique em qualquer botão para voltar as escolhas: ";
 				std::cin >> sair;
@@ -105,11 +108,15 @@ void Jogo::Escolha()
 					break;
 				}
 				break;
-			case 3:
+			case '3':
 				exit(true);
 				break;
 			default:
 				std::cout << "Escolha inválida! \n";
+				using namespace std::chrono_literals;
+				std::this_thread::sleep_for(1.3s);
+
+				system("CLS");
 				break;
 			}
 		}
@@ -119,19 +126,25 @@ void Jogo::JogoPrincipal()
 {
 	Telas Telas;
 	Jogo Jogo;
+	system("CLS");
+	Telas.TelaBoasVindas();
 	for (int i = 0; i < 9; i++) {
 		Telas.RetornaJogo();
 		Jogo.Jogador1();
+		system("CLS");
+		Telas.TelaBoasVindas();
 		Jogo.RetornaVencedor();
 		Telas.RetornaJogo();
 		Jogo.Jogador2();
+		system("CLS");
+		Telas.TelaBoasVindas();
 		Jogo.RetornaVencedor();
 	}
 }
 void Jogo::Jogador1()
 {
 	Jogo Jogo;
-Jogador1:
+	Jogador1:
 	std::cout << "Jogador 1:";
 	std::cin >> Escolha1;
 	if (posicao[Escolha1 - 1] != 0) {
@@ -187,7 +200,7 @@ void Jogo::RetornaVencedor()
 void Jogo::Continuar()
 {
 	std::string continua;
-volta:
+	volta:
 	std::cout << "CONTINUAR?[S/N]: ";
 	std::cin >> continua;
 	if (continua == "s" || continua == "S")
@@ -205,3 +218,6 @@ volta:
 	}
 }
 
+void Jogo::Placar()
+{
+}
