@@ -179,11 +179,11 @@ void Jogo::Jogador2()
 
 void Jogo::RetornaVencedor()
 {
-	if(posicao[0,1,2] == 1 || posicao[3,4,5] == 1 || posicao[6,7,8] == 1 || posicao[0,4,8] == 1 || 
+	/*if(posicao[0,1,2] == 1 || posicao[3,4,5] == 1 || posicao[6,7,8] == 1 || posicao[0,4,8] == 1 || 
 		posicao[2,4,6] == 1 || posicao[0,3,6] == 1 || posicao[1,4,7] == 1 || posicao[2,5,8] == 1)
 		std::cout << "JOGADOR 1 GANHOU\n";
 	else if(posicao[0, 1, 2] == -1 || posicao[3, 4, 5] == -1 || posicao[6, 7, 8] == -1 || posicao[0, 4, 8] == -1 ||
 		posicao[2, 4, 6] == -1 || posicao[0, 3, 6] == -1 || posicao[1, 4, 7] == -1 || posicao[2, 5, 8] == -1)
-		std::cout << "JOGADOR 2 GANHOU\n";
-}
+		std::cout << "JOGADOR 2 GANHOU\n";*/
+}sdsdasd]
 
