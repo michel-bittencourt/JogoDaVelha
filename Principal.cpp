@@ -2,8 +2,7 @@
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <chrono>
-#include <thread>
+
 //Prototipos
 struct Telas {
 	void TelaBoasVindas();
@@ -19,28 +18,41 @@ struct Jogo {
 	void RetornaVencedor();
 	void Continuar();
 	void Placar();
-	void Delay();
 };
 int posicao[9]{ 0 };
 int Escolha1, Escolha2{ 0 };
+int placarJ1=0;
+int placarJ2=0;
+
 int main() {
 
 	Telas Telas;
 	Jogo Jogo;
 
-	for (int i = 0; i < 9; i++)
-	{
-		posicao[i] = 0;
-	}
+	
 	Telas.TelaBoasVindas();
-	Jogo.Escolha();
-	Jogo.JogoPrincipal();
+	if(placarJ1==0 && placarJ2==0)
+	{
+		Jogo.Escolha();
+	}
+	else
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			posicao[i] = 0;
+		}
+		Jogo.JogoPrincipal();
+	}
 	return 0;
 }
 //Função
 void Telas::TelaBoasVindas()
 {
+	Jogo jogo;
+
 	std::cout << "Jogo da Velha\n";
+	//std::cout << "Placar: J1:" << placarJ1 <<"J2:" << placarJ2 ;
+	jogo.Placar();
 }
 void Telas::TelaMenu()
 {
@@ -103,6 +115,8 @@ void Jogo::Escolha()
 				std::cin >> sair;
 				switch (sair)
 				{
+				case ' ':
+					break;
 				default:
 					system("CLS");
 					entrada = false;
@@ -114,7 +128,6 @@ void Jogo::Escolha()
 				break;
 			default:
 				std::cout << "Escolha inválida! \n";
-				Jogo.Delay();
 				system("CLS");
 				break;
 			}
@@ -142,21 +155,21 @@ void Jogo::JogoPrincipal()
 }
 void Jogo::Jogador1()
 {
-	Jogo Jogo;
 	Jogador1:
 	std::cout << "Jogador 1:";
 	std::cin >> Escolha1;
+
 	if (posicao[Escolha1 - 1] != 0) {
-		std::cout << "Posição já preenchida, escolha novamente!\n";
+		std::cout << "Jogada inválida, escolha novamente!\n";
 		goto Jogador1;
 	}
-	else {
+	else{
 		posicao[Escolha1 - 1] = 1;
 	}
+
 }
 void Jogo::Jogador2()
 {
-	Jogo Jogo;
 Jogador2:
 	std::cout << "Jogador 2:";
 	std::cin >> Escolha2;
@@ -181,6 +194,7 @@ void Jogo::RetornaVencedor()
 	{
 		Telas.RetornaJogo();
 		std::cout << "JOGADOR 1 GANHOU\n";
+		placarJ1++;
 		Continuar();
 	}
 	else if (posicao[0] == -1 && posicao[1] == -1 && posicao[2] == -1 ||
@@ -193,6 +207,7 @@ void Jogo::RetornaVencedor()
 	{
 		Telas.RetornaJogo();
 		std::cout << "JOGADOR 2 GANHOU\n";
+		placarJ2++;
 		Continuar();
 	}
 }
@@ -219,10 +234,5 @@ void Jogo::Continuar()
 
 void Jogo::Placar()
 {
-}
-
-void Jogo::Delay()
-{
-	using namespace std::chrono_literals;
-	std::this_thread::sleep_for(1.3s);
+	printf("PLACAR: J1: %d  -  J2: %d\n\n", placarJ1, placarJ2);
 }
