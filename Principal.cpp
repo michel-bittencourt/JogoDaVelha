@@ -141,8 +141,6 @@ void Jogo::Jogador1()
 			posicao[Escolha1-1] = 1;
 		}
 
-		
-
 	/*bool saida2 = true;
 	while (saida2)
 	{
