@@ -54,7 +54,19 @@ void Telas::RetornaJogo()
 {
 	for (int j = 0; j < 9; j++)
 	{
-		printf(" %d ", posicao[j]);
+		if(posicao[j] == 1)
+		{
+			printf(" X ");
+		}
+		else if(posicao[j] == -1)
+		{
+			printf(" O ");
+		}
+		else
+		{
+			printf("   ");
+		}
+		//printf(" %d ", posicao[j]);
 		if (j == 2 || j == 5 || j == 8) {
 			std::cout << "\n";
 		}
@@ -146,6 +158,7 @@ Jogador2:
 }
 void Jogo::RetornaVencedor()
 {
+	Telas Telas;
 	if (posicao[0] == 1 && posicao[1] == 1 && posicao[2] == 1 ||
 		posicao[6] == 1 && posicao[7] == 1 && posicao[8] == 1 ||
 		posicao[0] == 1 && posicao[4] == 1 && posicao[8] == 1 ||
@@ -154,6 +167,7 @@ void Jogo::RetornaVencedor()
 		posicao[1] == 1 && posicao[4] == 1 && posicao[7] == 1 ||
 		posicao[2] == 1 && posicao[5] == 1 && posicao[8] == 1)
 	{
+		Telas.RetornaJogo();
 		std::cout << "JOGADOR 1 GANHOU\n";
 		Continuar();
 	}
@@ -165,22 +179,23 @@ void Jogo::RetornaVencedor()
 		posicao[1] == -1 && posicao[4] == -1 && posicao[7] == -1 ||
 		posicao[2] == -1 && posicao[5] == -1 && posicao[8] == -1)
 	{
+		Telas.RetornaJogo();
 		std::cout << "JOGADOR 2 GANHOU\n";
 		Continuar();
 	}
 }
 void Jogo::Continuar()
 {
-	char continua;
+	std::string continua;
 volta:
 	std::cout << "CONTINUAR?[S/N]: ";
 	std::cin >> continua;
-	if (continua == 's' || continua == 'S')
+	if (continua == "s" || continua == "S")
 	{
 		system("CLS");
 		main();
 	}
-	else if (continua == 'n' || continua == 'N')
+	else if (continua == "n" || continua == "N")
 	{
 		exit(true);
 	}
