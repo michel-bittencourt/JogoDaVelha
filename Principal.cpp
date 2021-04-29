@@ -119,6 +119,7 @@ void Jogo::JogoPrincipal()
 void Jogo::Jogador1()
 {
 	Jogo Jogo;
+<<<<<<< HEAD
 Jogador1:
 	std::cout << "Jogador 1:";
 	std::cin >> Escolha1;
@@ -129,6 +130,38 @@ Jogador1:
 	else {
 		posicao[Escolha1 - 1] = 1;
 	}
+=======
+		Jogador1:
+		std::cout << "Jogador 1:";
+		std::cin >> Escolha1;
+		if (posicao[Escolha1-1] != 0) {
+			std::cout << "Posição já preenchida, escolha novamente!\n";
+			goto Jogador1;
+		}
+		else {
+			posicao[Escolha1-1] = 1;
+		}
+
+	/*bool saida2 = true;
+	while (saida2)
+	{
+		bool saida = true;
+		while (saida)
+		{
+			std::cout << "Jogador 1: ";
+			std::cin >> Escolha1;
+			if (posicao[Escolha1 - 1] == -1 && posicao[Escolha1 - 1] == 1) {
+				std::cout <<
+					"Posição já escolhida";  saida = false;
+			}
+			else
+			{
+				posicao[Escolha1 - 1] = 1;
+				saida2 = false;
+			}
+		}
+	}*/
+>>>>>>> 75430e560097f8889d3b596793e0c54293392e18
 }
 void Jogo::Jogador2()
 {
@@ -146,6 +179,7 @@ Jogador2:
 }
 void Jogo::RetornaVencedor()
 {
+<<<<<<< HEAD
 	if (posicao[0] == 1 && posicao[1] == 1 && posicao[2] == 1 ||
 		posicao[6] == 1 && posicao[7] == 1 && posicao[8] == 1 ||
 		posicao[0] == 1 && posicao[4] == 1 && posicao[8] == 1 ||
@@ -188,5 +222,13 @@ volta:
 		std::cout << "Tecla inválidade, tente novamente!\n";
 		goto volta;
 	}
+=======
+	/*if(posicao[0,1,2] == 1 || posicao[3,4,5] == 1 || posicao[6,7,8] == 1 || posicao[0,4,8] == 1 || 
+		posicao[2,4,6] == 1 || posicao[0,3,6] == 1 || posicao[1,4,7] == 1 || posicao[2,5,8] == 1)
+		std::cout << "JOGADOR 1 GANHOU\n";
+	else if(posicao[0, 1, 2] == -1 || posicao[3, 4, 5] == -1 || posicao[6, 7, 8] == -1 || posicao[0, 4, 8] == -1 ||
+		posicao[2, 4, 6] == -1 || posicao[0, 3, 6] == -1 || posicao[1, 4, 7] == -1 || posicao[2, 5, 8] == -1)
+		std::cout << "JOGADOR 2 GANHOU\n";*/
+>>>>>>> 75430e560097f8889d3b596793e0c54293392e18
 }
 
